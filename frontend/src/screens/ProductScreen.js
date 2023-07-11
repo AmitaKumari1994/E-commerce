@@ -2,16 +2,32 @@ import React from 'react'
 import products from '../products'
 import Rating from '../components/Rating'
 import HomeScreen from '../screens/HomeScreen';
-import { useParams } from 'react-router-dom'
+import {useParams } from 'react-router-dom'
+import {useState, useEffect} from 'react';
 import { OpenLinksButton, ImageLoading, buttonStyling } from '../Assets/Wrappers/ProductScreen'
 import { Link } from 'react-router-dom';
 import { Row, Col, Image, ListGroup, Card, Button, ListGroupItem } from 'react-bootstrap'
+import axios from 'axios';
 
-const ProductScreen = ({ match }) => {
+
+
+const ProductScreen = () => {
+
+  const [product , setProduct] = useState({});
 
   //match.params.id since we have added /:id in the app.js screen
-  const { id } = useParams();
-  const product = products.find((item) => item._id === id)
+  const { id:productId } = useParams();
+
+  useEffect(()=>{
+    const fetchProducts = async()=>{
+      const {data} = await axios.get(`/api/products/${productId}`);
+      setProduct(data);
+    }
+
+    fetchProducts()
+  },[productId])
+
+  // const product = products.find((item) => item._id === id)
   return (
     <>
       <OpenLinksButton>

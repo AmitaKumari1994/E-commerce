@@ -5,6 +5,8 @@ import Header from './components/Header';
 import {Container} from 'react-bootstrap';
 import HomeScreen from './screens/HomeScreen';
 import ProductScreen from './screens/ProductScreen';
+import { Provider } from 'react-redux';
+import store from './store'
 
 
 function App() {
