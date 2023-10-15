@@ -73,6 +73,9 @@ export const Logo = styled.img`
 
 `;
 
+export const h1 = styled.div`
+text-transform:none;
+`;
 export const OpenLinksButton = styled.button`
   width: 70px;
   height: 41px;
